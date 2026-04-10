@@ -8,7 +8,7 @@ Integral: $\int$
 # The Energy Integral: Full Derivation
 
 ## 1. Rotational Work from First Principles
-In linear mechanics, Work is the product of Force and Displacement ($W = F \cdot d$). In the rotational mechanics, one translate these to **Torque** ($\tau$) and **Angular Displacement** ($\theta$).
+In linear mechanics, Work is the product of Force and Displacement ($W = F \cdot d$). In the rotational mechanics, we translate these to **Torque** ($\tau$) and **Angular Displacement** ($\theta$).
 
 $$W = \tau \cdot \theta$$
 
