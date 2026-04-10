@@ -17,7 +17,7 @@ Because the robot's torque changes every millisecond due to gravity and momentum
 
 Mechanical Power ($P$) is defined as:
 $$P = \tau \cdot \omega$$
-*(Where $\omega$ is angular velocity $\dot{\theta}$)*
+Where $\omega$ is angular velocity $\dot{\theta}$
 
 Total Mechanical Work ($W$) is the integral of Power over time:
 $$W = \int_{0}^{T} | \tau(t) \cdot \dot{\theta}(t) | \, dt$$
