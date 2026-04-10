@@ -21,9 +21,9 @@ Where $\omega$ is angular velocity $\dot{\theta}$
 
 Total Mechanical Work ($W$) is the integral of Power multiplied by time:
 $$W = \int_{0}^{T} | \tau(t) \cdot \dot{\theta}(t) | dt$$
-
+The absolutw value of power is take , becuase we care about the magnitude of the total energy spent, and not the direction
 ## 3. Discretization for Simulation
-Since PyBullet runs in discrete timesteps ($\Delta t = \frac{1}{240}$s), my code implements a **Riemann Sum** to approximate the integral:
+Since PyBullet runs in discrete timesteps (dt = 1/240 s), my code implements a **Riemann Sum** to approximate the integral:
 
 $$W \approx \sum_{i=1}^{n} | \tau_i \cdot \dot{\theta}_i | \cdot \Delta t$$
 
