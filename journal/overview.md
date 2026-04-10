@@ -1,12 +1,12 @@
 # How this project works
 
-## The core idea
-A robotic arm wastes energy when it moves carelessly — 
-high torque, jerky motion, inefficient paths. This project 
+##  core idea
+A robotic arm wastes energy when it moves carelessly ( 
+high torque, jerky motion, inefficient paths). This project 
 trains an AI to find paths that reach the target while 
 minimizing wasted energy.
 
-## The physics in plain language
+##  physics 
 Every joint in a robot arm acts like a motor. That motor 
 produces torque (a rotational force, measured in Nm) and 
 spins at some angular velocity (rad/s). 
@@ -16,8 +16,7 @@ Energy = power integrated over time
 
 So: **W = ∫τθ̇ dt**
 
-This is not an approximation. This is the exact mechanical 
-work done by each joint. My code computes this at every 
+My code computes this at every 
 simulation timestep.
 
 [Full mathematical derivation →](../physics/energy_integral.md)
