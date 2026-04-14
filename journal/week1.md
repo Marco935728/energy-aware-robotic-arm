@@ -37,3 +37,6 @@ how to calculate the total energy used by the arm at different times using reyma
 ## What confused me or didn't work
 I was expecting a more clear inverse relationship between distance and energy, but it appears that distance is not the main determinant for use of energy.
 ## Evidence
+
+## Evaluation of results 
+Firstly I tested  various positions and different (x,y,z) coordinates, and what I found was correlation between energy and accuracy(distance_m). This interested me.Consequently,I decided to run  a better experiment where I isolated one axis and increased its distance systematically.
