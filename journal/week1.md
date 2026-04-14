@@ -1,16 +1,39 @@
-# Week 1 — [date]
+# Week 0 — [March 30 2026]
 
 ## What I did
-[2-3 sentences]
+Undestood how to trasnfer my coding enviroment form github to the macbook terminal, and impllentetna a new repository withmy journals.Studied the function that i will use from my code in order to maek the robotic hand
 
 ## Physics I learned
-[Explain in your own words — no copying]
+no physics learned 
 
 ## What confused me or didn't work
-[Be honest — this is the most valuable part]
+It was quite challenging and frustrating to move coding enviroment and link my test_physics.py code on both the macbook`s termina and GitHub
 
 ## Evidence
-[Link to graph, screenshot, or video]
+no evidence
 
-## Next step
-[One specific thing]
+# Week 1 — [April 6 2026]
+
+## What I did
+Set up a coding environment, implemented a robotic hand with 7 joints that can be moved manually with sliders and a target to be reached. The code also report the torque utilized and the distance from the robotic hand and the traget position.
+
+## Physics I learned
+week 1 physics was mostly rotational mechanics, which I had already learned prior to starting this personal project  
+
+## What confused me or didn't work
+I tried to move the joint to reach the target, but I was able to do so only after many failures.I understood that I need to automate the movement of the robotic hand if I want to eliminate human error 
+
+## Evidence
+(https://youtu.be/khyIA4fsZAQ) 
+
+
+# Week 2 — [April 13 2026]
+
+## What I did
+I automated the movement of the hand to remove human failure using the calculateInverseKinematics function in pybullet( I have not studied inverse kinematics yet , i will use this function for now, but I will independently study it  soon.I used my code to make the torque reach a target at different position in order to analyze what is the relationship between energy and distance 
+## Physics I learned
+how to calculate the total energy used by the arm at different times using reyman sum. 
+
+## What confused me or didn't work
+I was expecting a more clear inverse relationship between distance and energy, but it appears that distance is not the main determinant for use of energy.
+## Evidence
