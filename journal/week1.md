@@ -32,7 +32,7 @@ I tried to move the joint to reach the target, but I was able to do so only afte
 ## What I did
 I automated the movement of the hand to remove human failure using the calculateInverseKinematics function in pybullet( I have not studied inverse kinematics yet , i will use this function for now, but I will independently study it  soon.I used my code to make the torque reach a target at different position in order to analyze what is the relationship between energy and distance 
 ## Physics I learned
-how to calculate the total energy used by the arm at different times using reyman sum. 
+how to calculate the total energy used by the arm at different times using Riemann sum. 
 
 ## What confused me or didn't work
 I was expecting a more clear inverse relationship between distance and energy, but it appears that distance is not the main determinant for use of energy.
