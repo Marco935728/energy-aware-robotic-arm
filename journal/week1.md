@@ -48,4 +48,33 @@ I was expecting a more clear inverse relationship between distance and energy, b
 
 
 Firstly I tested  various positions and different (x,y,z) coordinates, and what I found was correlation between energy and accuracy(distance_m)[table1]. This interested me.Consequently,I decided to run  a better experiment where I isolated one axis and increased its distance systematically.
+[table2]
+### Baseline Experiment: Variable Isolation
+
+#### 1. Varying X-Axis (Horizontal Reach)
+| Test | Target [x, y, z] | Distance (m) | Energy (J) |
+| :--- | :--- | :--- | :--- |
+| vary_x_1 | [0.3, 0.0, 0.5] | 0.099 | 440.8 |
+| vary_x_2 | [0.4, 0.0, 0.5] | 0.075 | 478.0 |
+| vary_x_3 | [0.5, 0.0, 0.5] | 0.074 | 472.3 |
+| vary_x_4 | [0.6, 0.0, 0.5] | 0.075 | 516.0 |
+| vary_x_5 | [0.7, 0.0, 0.5] | 0.069 | 539.8 |
+
+#### 2. Varying Y-Axis (lateral dispalcement)
+| Test | Target [x, y, z] | Distance (m) | Energy (J) |
+| :--- | :--- | :--- | :--- |
+| vary_y_1 | [0.4, -0.2, 0.5] | 0.074 | 473.7 |
+| vary_y_2 | [0.4, -0.1, 0.5] | 0.074 | 486.1 |
+| vary_y_3 | [0.4, 0.0, 0.5] | 0.075 | 481.9 |
+| vary_y_4 | [0.4, 0.1, 0.5] | 0.074 | 472.9 |
+| vary_y_5 | [0.4, 0.2, 0.5] | 0.074 | 480.2 |
+
+#### 3. Varying Z-Axis (Height)
+| Test | Target [x, y, z] | Distance (m) | Energy (J) |
+| :--- | :--- | :--- | :--- |
+| vary_z_1 | [0.4, 0.0, 0.3] | 0.053 | 691.4 |
+| vary_z_2 | [0.4, 0.0, 0.4] | 0.063 | 576.1 |
+| vary_z_3 | [0.4, 0.0, 0.5] | 0.075 | 478.7 |
+| vary_z_4 | [0.4, 0.0, 0.6] | 0.091 | 381.4 |
+| vary_z_5 | [0.4, 0.0, 0.7] | 0.116 | 294.9 |
 
