@@ -36,9 +36,7 @@ how to calculate the total energy used by the arm at different times using Riema
 
 ## What confused me or didn't work
 I was expecting a more clear inverse relationship between distance and energy, but it appears that distance is not the main determinant for use of energy.
-## Evidence
-
-## Evaluation of results 
+## Evidence and  Evaluation of results 
 [table1]
 | target_x | target_y | target_z | distance_m | energy_j |
 | :--- | :--- | :--- | :--- | :--- |
