@@ -39,4 +39,12 @@ I was expecting a more clear inverse relationship between distance and energy, b
 ## Evidence
 
 ## Evaluation of results 
-Firstly I tested  various positions and different (x,y,z) coordinates, and what I found was correlation between energy and accuracy(distance_m). This interested me.Consequently,I decided to run  a better experiment where I isolated one axis and increased its distance systematically.
+[table1]
+target_x	target_y	target_z	distance_m	energy_j
+0.3         0	       0.6	     0.0995	    410.8229
+0.4	        0.2	     0.5	     0.0735	    499.3374
+0.5       	0	       0.4	     0.0621	    560.5508
+0.3	        0.3	     0.7	     0.1125	    333.6207
+0.6	        0.1	     0.3	     0.0547	    715.8503
+Firstly I tested  various positions and different (x,y,z) coordinates, and what I found was correlation between energy and accuracy(distance_m)[table1]. This interested me.Consequently,I decided to run  a better experiment where I isolated one axis and increased its distance systematically.
+
