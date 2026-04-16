@@ -33,6 +33,7 @@ I tried to move the joint to reach the target, but I was able to do so only afte
 I automated the movement of the hand to remove human failure using the calculateInverseKinematics function in pybullet( I have not studied inverse kinematics yet , i will use this function for now, but I will independently study it  soon.I used my code to make the torque reach a target at different position in order to analyze what is the relationship between energy and distance 
 ## Physics I learned
 how to calculate the total energy used by the arm at different times using Riemann sum.
+[derivation](../phisics/energy_integral.md)
 
 ## What confused me or didn't work
 I was expecting a more clear inverse relationship between distance and energy, but it appears that distance is not the main determinant for use of energy.
@@ -80,6 +81,5 @@ Firstly I tested  various positions and different (x,y,z) coordinates, and what 
 | vary_z_4 | [0.4, 0.0, 0.6] | 0.091 | 381.4 |
 | vary_z_5 | [0.4, 0.0, 0.7] | 0.116 | 294.9 |
 
-
-
+It is possible to conclude that height is the main determinant in energy consumption, and it has an inverse relationship: a lower height leads to more energy consumed.There is also a correlation between Horizontal reach(x-axis) and energy consumption, with further target consuming more energy then lower one-although it is moderate.Lateral displacement seems to have a negligible effect, and it does not show any clear pattern.The reason for this could be that  at lower height the different joints are exposed to more gravitational energy that need rope torque to be balanced, this is because when trying to grab something at low height the joint align non-vertically,on the contrary when a target is at high height, the joining “stack up”,supporting one another against the gravitational force,decreasing energy consuming.Similarity, trying to grab a target further away from the hand will mean the joint will need to “spread out” more , consuming more energy.
 
