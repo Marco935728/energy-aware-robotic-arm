@@ -20,8 +20,8 @@ $$y = l_1\sin(\theta_1) + l_2\sin(\theta_1 + \theta_2)$$
 
 $$x = \sum_{k=1}^{n} l_k \cos\left(\sum_{i=1}^{k} \theta_i\right)$$
 
-**Note:** The KUKA iiwa works in 3D, thus it requires rotation matrices rather than scalar trigonometry.
+**Note:** The KUKA iiwa works in 3D, thus it requires rotation matrices and not scalar trigonometry.
 
-[Full hand-written derivation above]
+
 [Back to journal →](../journal/week2.md)
 
