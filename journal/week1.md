@@ -100,7 +100,9 @@ I derived Foward Kinematics equationfrom first principles, then I verified the e
            got (0.0000, 0.0000), expected (0.0000, 0.0000)
   ✓ PASSED | Folded unequal lengths
            got (0.5000, 0.0000), expected (0.5000, 0.0000)
+```
 ### PyBullet comparison results
+```text
 ─ PyBullet comparison ──────────────────
 Config            My FK (x,y)       PyBullet (x,z)    Error
   θ1=0°  θ2=0°     (0.417, 0.000)    (0.000, 0.694)    0.8101m
@@ -108,12 +110,11 @@ Config            My FK (x,y)       PyBullet (x,z)    Error
   θ1=45° θ2=45°    (0.100, 0.375)    (0.146, 0.597)    0.2258m
   θ1=30° θ2=-45°   (0.389, -0.000)   (-0.220, 0.597)   0.8522m
   θ1=60° θ2=30°    (0.071, 0.398)    (0.058, 0.650)    0.2521m
-
+```
 
 ### What the error tells me
 As expected an error occurs when we try to apply Forward Kinematics planar trigonometry to our 3D KUKA arm. This happens because  the 3D arm operates also around the z-axis, an axis that does not exist in the 2D model. Therefore in order to accurately model the 3D arm, we would need to implement three-dimensional rotation matrices. Moreover, the KUKA arm contains  offsets and bends between links and joints that  cannot be perfectly modeled as simple straight lines(like our model was assuming).
 
 ## Evidence
-[link to code/verify_fk.py]
-
-[link to FK_derivation/FK_derivation.md]
+ [link to code/verify_fk.py](code/verify_fk.py)
+ [link to physics/FK_derivation.md](physics/FK_derivation.md)
