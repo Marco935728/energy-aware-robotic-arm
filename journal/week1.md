@@ -112,5 +112,7 @@ Config            My FK (x,y)       PyBullet (x,z)    Error
 
 ### What the error tells me
 As expected an error occurs when we try to apply Forward Kinematics planar trigonometry to our 3D KUKA arm. This happens because  the 3D arm operates also around the z-axis, an axis that does not exist in the 2D model. Therefore in order to accurately model the 3D arm, we would need to implement three-dimensional rotation matrices. Moreover, the KUKA arm contains  offsets and bends between links and joints that  cannot be perfectly modeled as simple straight lines(like our model was assuming).
+
+## Evidence
 [link to code/verify_fk.py]
 [link to FK_derivation/FK_derivation.md]
