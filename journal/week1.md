@@ -1,4 +1,4 @@
-# Week 0 — [March 30 2026]
+# Session 0 — [March 30 2026]
 
 ## What I did
 Undestood how to trasnfer my coding enviroment form github to the macbook terminal, and impllentetna a new repository withmy journals.Studied the function that i will use from my code in order to maek the robotic hand
@@ -12,7 +12,7 @@ It was quite challenging and frustrating to move coding enviroment and link my t
 ## Evidence
 no evidence
 
-# Week 1 — [April 6 2026]
+# Session 1 — [April 6 2026]
 
 ## What I did
 Set up a coding environment, implemented a robotic hand with 7 joints that can be moved manually with sliders and a target to be reached. The code also report the torque utilized and the distance from the robotic hand and the traget position.
@@ -27,7 +27,7 @@ I tried to move the joint to reach the target, but I was able to do so only afte
 (https://youtu.be/khyIA4fsZAQ) 
 
 
-# Week 2 — [April 13 2026]
+# Session 2 — [April 13 2026]
 
 ## What I did
 I automated the movement of the hand to remove human failure using the calculateInverseKinematics function in pybullet( I have not studied inverse kinematics yet , i will use this function for now, but I will independently study it  soon.I used my code to make the torque reach a target at different position in order to analyze what is the relationship between energy and distance 
@@ -83,3 +83,34 @@ Firstly I tested  various positions and different (x,y,z) coordinates, and what 
 
 It is possible to conclude that height is the main determinant in energy consumption, and it has an inverse relationship: a lower height leads to more energy consumed.There is also a correlation between Horizontal reach(x-axis) and energy consumption, targets at greater horizontal distance consume more energy than closer ones – although the effect is moderate compared to height.Lateral displacement seems to have a negligible effect, and it does not show any clear pattern.The reason for this could be that  at lower height the different joints are exposed to more gravitational energy that needs more torque to be balanced, this is because when trying to grab something at low height the joint align non-vertically,on the contrary when a target is at high height, the joining “stack up”,supporting one another against the gravitational force,decreasing energy consuming.Similarity, trying to grab a target further away from the hand will mean the joint will need to “spread out” more , consuming more energy.It is also significant to look at the coordinate [0.4, 0.0, 0.5], which  appears in all three data set.The point produced consistent energy reading, 478J,482J and 479J respectively( a less than 1% variation), confirming the  reliability of the simulation, and its reproducibility between trials. 
 
+
+# Session 3 — [9 July 2026]
+## FK Implementation
+
+### What I did
+I derived Foward Kinematics equationfrom first principles, then I verified the equation trough "sanity check" and comapred my results against PyBullet.
+### "Sanity check" results
+── Sanity checks ────────────────────────
+  ✓ PASSED | Fully extended
+           got (2.0000, 0.0000), expected (2.0000, 0.0000)
+  ✓ PASSED | L-shape
+           got (1.0000, 1.0000), expected (1.0000, 1.0000)
+  ✓ PASSED | Fully folded
+           got (0.0000, 0.0000), expected (0.0000, 0.0000)
+  ✓ PASSED | Folded unequal lengths
+           got (0.5000, 0.0000), expected (0.5000, 0.0000)
+
+### PyBullet comparison results
+─ PyBullet comparison ──────────────────
+Config            My FK (x,y)       PyBullet (x,z)    Error
+  θ1=0°  θ2=0°     (0.417, 0.000)    (0.000, 0.694)    0.8101m
+  θ1=45° θ2=0°     (0.295, 0.295)    (-0.021, 0.695)   0.5095m
+  θ1=45° θ2=45°    (0.100, 0.375)    (0.146, 0.597)    0.2258m
+  θ1=30° θ2=-45°   (0.389, -0.000)   (-0.220, 0.597)   0.8522m
+  θ1=60° θ2=30°    (0.071, 0.398)    (0.058, 0.650)    0.2521m
+
+
+### What the error tells me
+As expected an error occurs when we try to apply Forward Kinematics planar trigonometry to our 3D KUKA arm. This happens because  the 3D arm operates also around the z-axis, an axis that does not exist in the 2D model. Therefore in order to accurately model the 3D arm, we would need to implement three-dimensional rotation matrices. Moreover, the KUKA arm contains  offsets and bends between links and joints that  cannot be perfectly modeled as simple straight lines(like our model was assuming).
+[link to code/verify_fk.py]
+[link to FK_derivation/FK_derivation.md]
