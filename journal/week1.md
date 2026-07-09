@@ -90,6 +90,7 @@ It is possible to conclude that height is the main determinant in energy consump
 ### What I did
 I derived Foward Kinematics equationfrom first principles, then I verified the equation trough "sanity check" and comapred my results against PyBullet.
 ### "Sanity check" results
+```text
 ── Sanity checks ────────────────────────
   ✓ PASSED | Fully extended
            got (2.0000, 0.0000), expected (2.0000, 0.0000)
@@ -99,7 +100,6 @@ I derived Foward Kinematics equationfrom first principles, then I verified the e
            got (0.0000, 0.0000), expected (0.0000, 0.0000)
   ✓ PASSED | Folded unequal lengths
            got (0.5000, 0.0000), expected (0.5000, 0.0000)
-
 ### PyBullet comparison results
 ─ PyBullet comparison ──────────────────
 Config            My FK (x,y)       PyBullet (x,z)    Error
@@ -115,4 +115,5 @@ As expected an error occurs when we try to apply Forward Kinematics planar trigo
 
 ## Evidence
 [link to code/verify_fk.py]
+
 [link to FK_derivation/FK_derivation.md]
