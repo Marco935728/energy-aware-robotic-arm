@@ -1,6 +1,6 @@
 # Inverse Kinematics  Derivation
 ## Hand-written proof
-![IK derivation](IK_derivation_handwritten.jpg)
+![IK derivation](IK_derivation_handwritten.pdf)
 ## Summary
 
 **Goal:** given target position (x, y), find joint angles θ₁ and θ₂
