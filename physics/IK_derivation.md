@@ -22,4 +22,4 @@ reinforcement learning agent will discover which configuration costs
 less energy for a given target.
 
 [FK derivation →](FK_derivation.md)  
-[Back to journal →](../journal/week2.md)
+[Back to journal →](../journal/week1.md)
