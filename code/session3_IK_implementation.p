@@ -2,39 +2,111 @@ import pybullet as p
 import pybullet_data
 import math
 
-# ─────────────────────────────────────────────────────────────
-# YOUR OWN IK FUNCTION
-# Derived from first principles — see physics/IK_derivation.md
-#
-# Geometric IK for a 2-joint planar arm using:
-# - Law of cosines to find θ₂
-# - arctan + quadrant correction to find γ
-# - Law of cosines to find α
-# - θ₁ = γ − α (elbow-down) or γ + α (elbow-up)
-#
-# This closed-form solution only works for 2-joint planar arms.
-# The 7-joint KUKA requires numerical Jacobian-based IK instead.
-# ─────────────────────────────────────────────────────────────
+def my_FK(theta1, theta2, l1, l2):
+    x = l1 * math.cos(theta1) + l2 * math.cos(theta1 + theta2)
+    y = l1 * math.sin(theta1) + l2 * math.sin(theta1 + theta2)
+    return x, y
 
-def my_IK(x, y, L1, L2, elbow_up=False):
-    """
-    Inverse kinematics for a 2-joint planar arm.
 
-    Inputs:
-        x, y     : target end-effector position (metres)
-        L1, L2   : link lengths (metres)
-        elbow_up : False = elbow-down, True = elbow-up
+def run_sanity_checks(l1=1.0, l2=1.0):
+    print("── Sanity checks ────────────────────────")
+    
+    checks = [
+        ("Fully extended",        0,          0,      l1+l2, 0),
+        ("L-shape",               0, math.pi/2,         l1, l2),
+        ("Fully folded",          0,   math.pi,      l1-l2, 0),
+    ]
+    
+    all_passed = True
+    for name, t1, t2, expected_x, expected_y in checks:
+        x, y = my_FK(t1, t2, l1, l2)
+        passed = (abs(x - expected_x) < 0.001 and
+                  abs(y - expected_y) < 0.001)
+        status = "✓ PASSED" if passed else "✗ FAILED"
+        if not passed:
+            all_passed = False
+        print(f"  {status} | {name}")
+        print(f"           got ({x:.4f}, {y:.4f}), "
+              f"expected ({expected_x:.4f}, {expected_y:.4f})")
 
-    Returns:
-        (theta1, theta2) in radians, or None if unreachable
-    """
+    # Additional check  unequal link lengths
+    x, y = my_FK(0, math.pi, 1.5, 1.0)
+    expected_x, expected_y = 0.5, 0.0
+    passed = abs(x - expected_x) < 0.001 and abs(y - expected_y) < 0.001
+    print(f"  {'✓ PASSED' if passed else '✗ FAILED'} | "
+          f"Folded unequal lengths")
+    print(f"           got ({x:.4f}, {y:.4f}), "
+          f"expected ({expected_x:.4f}, {expected_y:.4f})")
 
-    # ── Step 0: Reachability check ───────────────────────────
-    r = math.sqrt(x**2 + y**2)
+    print()
+    if all_passed:
+        print("All sanity checks passed — FK equations verified.")
+    else:
+        print("A check failed — review your FK equations.")
+    return all_passed
 
-    if r > L1 + L2:
-        print(f"  Target unreachable: r={r:.3f} > L1+L2={L1+L2:.3f}")
-        return None
+
+def compare_with_pybullet():
+    print("\n── PyBullet comparison ──────────────────")
+    
+    p.connect(p.DIRECT)
+    p.setAdditionalSearchPath(pybullet_data.getDataPath())
+    p.setGravity(0, 0, -9.81)
+    robot_id = p.loadURDF("kuka_iiwa/model.urdf",
+                           [0, 0, 0], useFixedBase=True)
+
+    # Link lengths read from zero-config URDF positions:
+    # Link 0 is at z=0.277, Link 1 at z=0.419, Link 2 at z=0.694
+    # L1 = distance from link 0 to link 1 = 0.419 - 0.277 = 0.142m
+    # L2 = distance from link 1 to link 2 = 0.694 - 0.419 = 0.275m
+    # NOTE: these are vertical distances at zero config — approximate
+    L1 = 0.142
+    L2 = 0.275
+
+    test_configs = [
+        (0.0,       0.0),
+        (math.pi/4, 0.0),
+        (math.pi/4, math.pi/4),
+        (math.pi/6, -math.pi/4),
+        (math.pi/3, math.pi/6),
+    ]
+
+    print(f"  {'Config':<30} {'My FK (x,y)':<24}"
+          f"{'PyBullet (x,z)':<24} {'Error'}")
+    print(f"  {'-'*95}")
+
+    for theta1, theta2 in test_configs:
+        p.resetJointState(robot_id, 0, theta1)
+        p.resetJointState(robot_id, 1, theta2)
+        p.stepSimulation()
+
+        state = p.getLinkState(robot_id, 2)
+        pos = state[0]
+
+        pb_x = pos[0]
+        pb_z = pos[2]
+
+        my_x, my_y = my_FK(theta1, theta2, L1, L2)
+
+
+        error = math.sqrt((my_x - pb_x)**2 + (my_y - pb_z)**2)
+
+        config_str = (f"θ1={math.degrees(theta1):.0f}°"
+                      f" θ2={math.degrees(theta2):.0f}°")
+        print(f"  {config_str:<30}"
+              f"({my_x:.3f}, {my_y:.3f}){'':<12}"
+              f"({pb_x:.3f}, {pb_z:.3f}){'':<12}"
+              f"{error:.4f}m")
+
+    p.disconnect()
+    print()
+    print("Note: residual errors reflect the 2D planar approximation")
+    print("applied to a 3D arm. Eliminating this requires rotation matrices.")
+
+
+if __name__ == "__main__":
+    run_sanity_checks(l1=1.0, l2=1.0)
+    compare_with_pybullet()        return None
     if r < abs(L1 - L2):
         print(f"  Target unreachable: r={r:.3f} < |L1-L2|={abs(L1-L2):.3f}")
         return None
@@ -52,7 +124,7 @@ def my_IK(x, y, L1, L2, elbow_up=False):
     # ── Step 3a: Find γ with quadrant correction ─────────────
     gamma_raw = math.atan(y / x) if x != 0 else math.pi / 2
 
-    # Manual quadrant correction — see derivation paper
+    # Manual quadrant correction 
     if x < 0:
         gamma = gamma_raw + math.pi   # Quadrants II and III
     else:
@@ -72,9 +144,7 @@ def my_IK(x, y, L1, L2, elbow_up=False):
     return theta1, theta2
 
 
-# ─────────────────────────────────────────────────────────────
-# SANITY CHECKS — same as your paper
-# ─────────────────────────────────────────────────────────────
+
 
 def run_sanity_checks():
     print("── IK Sanity checks ─────────────────────")
@@ -124,19 +194,14 @@ def run_sanity_checks():
         print("A check failed — review IK equations.")
 
 
-# ─────────────────────────────────────────────────────────────
-# VERIFY AGAINST FK
-# The gold standard test: IK(FK(θ₁,θ₂)) should return θ₁,θ₂
-# i.e. if we feed IK the position that FK produces,
-# we should get back the original joint angles
-# ─────────────────────────────────────────────────────────────
+
 
 def verify_IK_with_FK():
     print("\n── IK verified against FK ───────────────")
 
     L1, L2 = 1.0, 1.0
 
-    # Import your FK function
+    # Import  FK function
     def FK(t1, t2):
         x = L1*math.cos(t1) + L2*math.cos(t1+t2)
         y = L1*math.sin(t1) + L2*math.sin(t1+t2)
@@ -159,7 +224,7 @@ def verify_IK_with_FK():
         # Forward: angles → position
         x, y = FK(t1_orig, t2_orig)
 
-        # Inverse: position → angles
+        # Inverse: position -> angles
         result = my_IK(x, y, L1, L2, elbow_up=False)
         if result is None:
             print(f"  IK returned None for ({x:.3f}, {y:.3f})")
@@ -192,9 +257,6 @@ def verify_IK_with_FK():
         print("Some angles did not recover — check elbow configuration.")
 
 
-# ─────────────────────────────────────────────────────────────
-# RUN EVERYTHING
-# ─────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     run_sanity_checks()
