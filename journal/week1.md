@@ -118,3 +118,45 @@ As expected an error occurs when we try to apply Forward Kinematics planar trigo
 ## Evidence
 * [link to code/verify_fk.py](../code/verify_fk.py)
 * [link to physics/FK_derivation.md](../physics/FK_derivation.md)
+
+
+# Session 4-[July 18]
+## IK Implementation
+
+### What I did
+I derivered the Inverse kiinematics function from fist principle using trigonometry (law of cosines) and manual quadrant correction for arctan.
+
+###  closed-loop verification
+ Theortically the inverse kinemtaics(IK) should correctly invert the foward kinematics(FK) if my functions are correct: IK(FK(θ₁,θ₂)) = (θ₁,θ₂)
+### Results
+```text
+pybullet build time: Oct 21 2025 17:40:50
+── IK Sanity checks ─────────────────────
+  ✓ PASSED | Full extension (x-axis)
+           got θ₁=0.00°, θ₂=0.00°  expected θ₁=0°, θ₂=0°
+  ✓ PASSED | Right angle (elbow-down)
+           got θ₁=-0.00°, θ₂=90.00°  expected θ₁=0°, θ₂=90°
+
+  Testing reachability check:
+  Target unreachable: r=25.000 > L1+L2=20.000
+  ✓ PASSED | Unreachable target correctly rejected
+
+All IK sanity checks passed.
+
+── IK verified against FK ───────────────
+  Original angles              FK position              IK recovered                 Error
+  ----------------------------------------------------------------------------------------------------
+  ✓ θ₁=0.0° θ₂=0.0°             (2.000, 0.000)           θ₁=0.0° θ₂=0.0°             0.000°, 0.000°
+  ✓ θ₁=45.0° θ₂=45.0°           (0.707, 1.707)           θ₁=45.0° θ₂=45.0°           0.000°, 0.000°
+  ✓ θ₁=60.0° θ₂=30.0°           (0.500, 1.866)           θ₁=60.0° θ₂=30.0°           0.000°, 0.000°
+  ✓ θ₁=30.0° θ₂=-45.0°          (1.832, 0.241)           θ₁=30.0° θ₂=-45.0°          0.000°, 0.000°
+  ✓ θ₁=90.0° θ₂=60.0°           (-0.866, 1.500)          θ₁=90.0° θ₂=60.0°           0.000°, 0.000°
+```
+
+
+### Analisys
+All tests passed, proving the reliability of the derived IK function. Moreover, the elbow-up/elbow-down choice will be a powerful tool to decide the best energy-efficient path, since depending on the target, a different configuration of the elbow direction can lead to less energy waste. This will be especially significant for the 7-joint arm used in this project, where the redundant configurations of the various joints will need to be managed in the optimal way, deciding the inclination of each joint based on the one that maximizes energy efficiency.
+
+## Evidence
+* [link to code/session4_IK_implementation.py]
+* [link to physics/IK_derivation.md](../physics/IK_derivation.md)
