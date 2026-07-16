@@ -158,5 +158,5 @@ All IK sanity checks passed.
 All tests passed, proving the reliability of the derived IK function. Moreover, the elbow-up/elbow-down choice will be a powerful tool to decide the best energy-efficient path, since depending on the target, a different configuration of the elbow direction can lead to less energy waste. This will be especially significant for the 7-joint arm used in this project, where the redundant configurations of the various joints will need to be managed in the optimal way, deciding the inclination of each joint based on the one that maximizes energy efficiency.
 
 ## Evidence
-* [link to code/session4_IK_implementation.py]
+* [link to code/session4_IK_implementation.py](../code/session4_IK_implementation.py)
 * [link to physics/IK_derivation.md](../physics/IK_derivation.md)
