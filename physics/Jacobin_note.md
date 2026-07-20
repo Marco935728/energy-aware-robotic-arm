@@ -8,7 +8,7 @@ A partial derivative differentiates a function of multiple
 variables with respect to one variable, treating all others 
 as constants. The four partial derivatives of the FK equations are derivered on the "Hand-written derivation".
 ## Result
-$$J = \begin{bmatrix} -L_1\sin\theta_1 - L_2\sin(\theta_1+\theta_2) & -L_2\sin(\theta_1+\theta_2) \\ L_1\cos\theta_1 + L_2\cos(\theta_1+\theta_2) & L_2\cos(\theta_1+\theta_2) \end{bmatrix}$$
+$$J = \begin{bmatrix} -L_1\sin(\theta_1) - L_2\sin(\theta_1+\theta_2) & -L_2\sin(\theta_1+\theta_2) \\ \\ L_1\cos(\theta_1) + L_2\cos(\theta_1+\theta_2) & L_2\cos(\theta_1+\theta_2) \end{bmatrix}$$
 ## Meaning 
 Each column reveals how the end-effector moves when only one join rotates:
 - Column 1: end-effector velocity when only joint 1 spins
@@ -27,8 +27,7 @@ $$J^+ = J^T(JJ^T)^{-1}$$
 This finds the minimum joint velocity solution among all infinite solutions that exist due to redundancy. This is what 
 PyBullet's "calculateInverseKinematics" uses.
 
-## Matrix multiplication
-{...}
+
 ## Connection to this project's energy integral
 The Jacobian matrix directly connects to W = ∫τθ̇dt.Using  ẋ = Jθ̇ the Jacobian matrix can relate the joitn velocities θ̇ to end-effector velocity.Moreover, trough deeper manipulation (which is beyond the scope of thsi derivation)  joint torques and end-effector forces can be releated with the transpose Jacobian: τ = Jᵀf.
 
@@ -39,11 +38,8 @@ via ẋ = Jθ̇. A deeper result in manipulator dynamics — beyond the
 scope of this derivation — shows that joint torques and end-effector 
 forces are related through the transpose Jacobian: τ = Jᵀf. 
 Thus, the energy intergal W = ∫τθ̇dt is related to the arm configuration, the jacobian matric determinesd how efficiently 
-joint effort becomes  useful end-effector motion.Therefore, the RL agent also optimizes effort relative to the arm`s instantaneous configuration.
+joint effort becomes  useful end-effector motion.Therefore, the RL agent also optimizes effort relative to the arm`s instantaneous configuration. Thus, the RL agent will not only minimize raw torque, but optimize the effort relatice to the arm geomtric configuration.
 
- The RL 
-agent therefore does not just minimize raw torque, but implicitly 
-optimizes effort relative to the arm's instantaneous configuration.
 
 [FK derivation →](FK_derivation.md)  
 [IK derivation →](IK_derivation.md)  
