@@ -23,5 +23,8 @@ $$x = \sum_{k=1}^{n} l_k \cos\left(\sum_{i=1}^{k} \theta_i\right)$$
 **Note:** The KUKA iiwa works in 3D, thus it requires rotation matrices and not scalar trigonometry.
 
 
+## Matrix multiplication and reference frames 
+
+
 [Back to journal →](../journal/week1.md)
 
