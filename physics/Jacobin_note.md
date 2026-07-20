@@ -9,7 +9,7 @@ A partial derivative differentiates a function of multiple variables with respec
 
 **Matrix $J$:**
 
-| $J = \Big[$ | Column 1 ($\theta_1$) | Column 2 ($\theta_2$) | $\Big]$ |
+| $J  | Column 1 ($\theta_1$) | Column 2 ($\theta_2$) |  |
 | :--- | :--- | :--- | :--- |
 | **Row 1 ($x$)** | $-L_1\sin(\theta_1) - L_2\sin(\theta_1+\theta_2)$ | $-L_2\sin(\theta_1+\theta_2)$ | |
 | **Row 2 ($y$)** | $L_1\cos(\theta_1) + L_2\cos(\theta_1+\theta_2)$ | $L_2\cos(\theta_1+\theta_2)$ | |
