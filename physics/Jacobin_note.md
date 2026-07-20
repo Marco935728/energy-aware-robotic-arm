@@ -6,7 +6,12 @@ Forward kinematics (FK) gives the end-effector position from joint angles. Howev
 ## Partial derivative
 A partial derivative differentiates a function of multiple variables with respect to one variable, treating all others as constants. The four partial derivatives of the FK equations are derived in the "Hand-written derivation".
 ## Result
-$$J = \begin{bmatrix} -L_1\sin(\theta_1) - L_2\sin(\theta_1+\theta_2) & -L_2\sin(\theta_1+\theta_2) \\ \\ L_1\cos(\theta_1) + L_2\cos(\theta_1+\theta_2) & L_2\cos(\theta_1+\theta_2) \end{bmatrix}$$
+## Result
+
+| | Column 1 ($\theta_1$) | Column 2 ($\theta_2$) |
+|---|---|---|
+| **Row 1 ($x$)** | $-L_1\sin(\theta_1) - L_2\sin(\theta_1+\theta_2)$ | $-L_2\sin(\theta_1+\theta_2)$ |
+| **Row 2 ($y$)** | $L_1\cos(\theta_1) + L_2\cos(\theta_1+\theta_2)$ | $L_2\cos(\theta_1+\theta_2)$ |
 ## Meaning 
 Each column reveals how the end-effector moves when only one joint rotates:
 - Column 1: end-effector velocity when only joint 1 spins
