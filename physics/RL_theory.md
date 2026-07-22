@@ -20,7 +20,7 @@ For this project it's the current joint angles, joint velocities, end-effector p
 **Reward:** t's the signal after the action of the arm that will help the agent to evaluate the most effective policy.
 
 $$r_t = -w_1 \cdot d_t - w_2 \cdot P_t + R_{success}$$
-Where $d_t$ is the distance to the target, $P_t = \sum_i |\tau_i \cdot \dot{\theta}_i|$ is the instantaneous mechanical power (where energy is given by the integral $W = \int \tau \dot{\theta} \, dt$), and $R_{\text{success}}$ is an award obtained when the target is reached within $0.05\text{ m}$. The weights $w_1$ and $w_2$ control the balance between accuracy and efficiency.
+Where $d_t$ is the distance to the target, $P_t = \sum_i |\tau_i \cdot \dot{\theta}_i|$  is the instantaneous mechanical power (where energy is given by the integral $W = \int \tau \dot{\theta} \, dt$) , and $R_{\text{success}}$ is an award obtained when the target is reached within $0.05\text{ m}$. The weights $w_1$ and $w_2$ control the balance between accuracy and efficiency.
 
 ## Why PPO
 While various RL algorithms exist, this project chose Proximal Policy Optimization (PPO), due to the following reasons:
