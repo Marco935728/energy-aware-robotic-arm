@@ -160,3 +160,14 @@ All tests passed, proving the reliability of the derived IK function. Moreover, 
 ## Evidence
 * [link to code/session4_IK_implementation.py](../code/session4_IK_implementation.py)
 * [link to physics/IK_derivation.md](../physics/IK_derivation.md)
+
+# Session 5 [25 July 2026]
+
+## Jacobian matrix understanding  
+Made a Jacobian matrix derivation on paper and documented it; Now Github physcis oflder contains FK,IK and jacobian complete derivation. 
+
+##  RL introduction 
+Current code: arm moves via IK, energy measured passively.
+RL: agent actively learns to minimise energy while reaching 
+targets. The reward function is W = ∫τθ̇dt used as a penalty signal.
+
